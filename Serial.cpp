@@ -101,7 +101,7 @@ bool Connection::Connect(std::string PortName, SerialParameter_t* SerialParamete
     }
 
   
-    return false;
+    return true;
 }
 
 
