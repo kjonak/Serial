@@ -145,7 +145,19 @@ bool Connection::CheckConnection()
     }
     return false;
 }
-
+bool Connection::ReadByte(uint8_t *buffer)
+{
+    DWORD l = 0;
+    if (m_Connected)
+    {
+        ReadFile(m_IO_Handle, buffer, 1, &l, 0);
+    }
+    if(l==0)
+        return false;
+    else 
+        return true;
+    
+}
 void Connection::Flush()
 {
     if (m_Connected)
@@ -159,7 +171,6 @@ unsigned int Connection::ReadPendingBytes(uint8_t* buffer, unsigned int bufferSi
     bool readComplete = false;
     unsigned long bytes_received;
     unsigned long comm_event = 0;
-
     if (!SetCommMask(m_IO_Handle, EV_RXCHAR))
     {
         std::cout << "Error while creating interrupt mask" << std::endl;

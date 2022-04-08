@@ -49,6 +49,7 @@ public:
 	bool CheckConnection();
 	void Flush();
 	void StartAutoConnectionCheck();
+	bool ReadByte(uint8_t* buffer);
 };
 
 }
